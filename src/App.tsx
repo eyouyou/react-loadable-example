@@ -11,7 +11,7 @@ mainElement.setAttribute('id', 'root')
 document.body.appendChild(mainElement)
 
 const App = () => {
-
+    // console.log(process.env.NODE_ENV);
     return (
         <RoutedLayout routes={routesConfig} />
     )

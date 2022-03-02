@@ -4,7 +4,7 @@ const rootPath = path.resolve(__dirname, '..')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin')
-
+const webpack = require("webpack");
 const development =
     !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 
@@ -47,12 +47,14 @@ module.exports = {
             },]
     },
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
         compress: true,
         port: 9000,
         hot: true,
     },
     plugins: [
         new HtmlWebpackPlugin({ favicon: 'public/favicon.ico' }),
+        new webpack.DefinePlugin({
+            "process.env": JSON.stringify(process.env),
+        }),
     ]
 }
